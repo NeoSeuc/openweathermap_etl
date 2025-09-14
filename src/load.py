@@ -5,14 +5,8 @@ from sqlalchemy import create_engine
 
 
 def load_weather_data(processed_data: pd.DataFrame):
-    """
-    Save processed weather data into Parquet and SQLite DB.
-
-    Args:
-        processed_data (pd.DataFrame): Cleaned weather data.
-    """
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # шлях до src
-    PROJECT_DIR = os.path.dirname(BASE_DIR)  # шлях до project
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    PROJECT_DIR = os.path.dirname(BASE_DIR)
 
     today = datetime.today().strftime("%Y-%m-%d")
     processed_dir = os.path.join(PROJECT_DIR, "data", "processed", today)

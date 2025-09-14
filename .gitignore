@@ -3,3 +3,4 @@
 /data
 local.db
 __pycache__
+report.json

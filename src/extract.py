@@ -1,6 +1,6 @@
 from datetime import datetime
 from dotenv import load_dotenv
-from openweathermap_api import OpenWeatherMapAPI
+from src.openweathermap_api import OpenWeatherMapAPI
 import os
 
 load_dotenv()
@@ -15,14 +15,13 @@ openweathermap_api = OpenWeatherMapAPI(api_key=OPENWEATHER_API_KEY)
 def extract_weather_data(lat: float, lon: float):
     response = openweathermap_api.get_current_weather_data(lat, lon)
 
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # шлях до src
-    PROJECT_DIR = os.path.dirname(BASE_DIR)  # шлях до project
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    PROJECT_DIR = os.path.dirname(BASE_DIR)
 
     today = datetime.today().strftime("%Y-%m-%d")
     raw_dir = os.path.join(PROJECT_DIR, "data", "raw", today)
     os.makedirs(raw_dir, exist_ok=True)
 
-    # зберігаємо response.json
     raw_path = os.path.join(raw_dir, "response.json")
     with open(raw_path, "w", encoding="utf-8") as f:
         import json
